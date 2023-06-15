@@ -1,0 +1,18 @@
+# macOS .DS_Store file
+**/.DS_Store
+
+# Development purpose files and folders
+node_modules
+/lib
+/test
+
+# VSCode settings
+.vscode
+
+# Distribution files
+index.js
+index.d.ts
+
+# Build
+build.main.sh
+build.test.sh

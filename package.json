@@ -1,0 +1,46 @@
+{
+  "name": "dynamic-colors",
+  "version": "1.0.0",
+  "description": "Dynamic Colors is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes.",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json && rollup -c && terser ./index.js -c -m -o ./index.js && terser ./DynamicColors.js -c -m -o ./DynamicColors.js && rm -rf ./lib/",
+    "test-build": "tsc -p ./tsconfig.json && tsc ./test/index.ts -t es6 && rollup ./test/index.js -o ./test/out.js && rm -rf ./lib/"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patelka2211/dynamic-colors.git"
+  },
+  "keywords": [
+    "Dynamic Colors",
+    "DynamicColors.js",
+    "Material Theme Builder",
+    "Dynamic Colors by KP",
+    "Developed by KP",
+    "front-end",
+    "Dynamic content",
+    "color theme generation",
+    "Front-end development",
+    "UI development",
+    "Open source",
+    "patelka2211"
+  ],
+  "author": "Kartavya Patel <patelka2211@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patelka2211/dynamic-colors/issues"
+  },
+  "homepage": "https://github.com/patelka2211/dynamic-colors#readme",
+  "devDependencies": {
+    "rollup": "^3.25.1",
+    "rollup-plugin-dts": "^5.3.0",
+    "terser": "^5.17.7",
+    "typescript": "^5.1.3"
+  }
+}
