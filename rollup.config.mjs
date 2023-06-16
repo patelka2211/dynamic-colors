@@ -4,13 +4,15 @@ const currentDate = new Date(),
     options = { year: "numeric", month: "long", day: "numeric" },
     formattedDate = currentDate.toLocaleDateString("en-US", options),
     banner = `/**
- * [**Dynamic Colors*](https://www.npmjs.com/package/dynamic-colors/) from KPVERSE
- *
- * Copyright © 2023-present, [Kartavya Patel](patelka2211@gmail.com). All rights reserved.
- *
- * Licensed under the MIT license.
+ * **Dynamic Colors** from KPVERSE
  *
  * Updated on ${formattedDate}.
+ *
+ * Copyright © 2023-present, Kartavya Patel. All rights reserved.
+ *
+ * @author Kartavya Patel <patelka2211@gmail.com>
+ *
+ * @license {@link https://github.com/patelka2211/dynamic-colors/blob/main/LICENSE MIT}
  */`;
 
 export default [
