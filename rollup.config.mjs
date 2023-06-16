@@ -1,18 +1,16 @@
 import dts from "rollup-plugin-dts";
 
-const time = new Date(),
+const currentDate = new Date(),
+    options = { year: "numeric", month: "long", day: "numeric" },
+    formattedDate = currentDate.toLocaleDateString("en-US", options),
     banner = `/**
- * [**Dynamic Colors by KP**](https://www.npmjs.com/package/dynamic-colors/)
+ * [**Dynamic Colors*](https://www.npmjs.com/package/dynamic-colors/) from KPVERSE
  *
- * Dynamic Colors is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes.
- * 
- * @author Kartavya Patel <patelka2211@gmail.com>
+ * Copyright © 2023-present, [Kartavya Patel](patelka2211@gmail.com). All rights reserved.
  *
- * @license {@link https://github.com/patelka2211/dynamic-colors/blob/main/LICENSE MIT}
+ * Licensed under the MIT license.
  *
- * @copyright Copyright © 2023-present, [Kartavya Patel](patelka2211@gmail.com). All rights reserved.
- *
- * Last updated at : ${time.toISOString()}
+ * Updated on ${formattedDate}.
  */`;
 
 export default [
