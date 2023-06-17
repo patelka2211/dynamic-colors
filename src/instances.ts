@@ -17,12 +17,15 @@ export function addInstance(dynamicColorsTag: DynamicColorsTag) {
 /**
  * Removes a DynamicColorsTag instance from the instances array and removes its associated HTML element.
  * @param {DynamicColorsTag} dynamicColorsTag The DynamicColorsTag instance to remove.
+ * @returns {boolean} Returns `true` if the instance is removed, `false` otherwise.
  */
-export function removeInstance(dynamicColorsTag: DynamicColorsTag) {
+export function removeInstance(dynamicColorsTag: DynamicColorsTag): boolean {
     if (instances.includes(dynamicColorsTag)) {
         instances.splice(instances.indexOf(dynamicColorsTag), 1);
 
         if (dynamicColorsTag.dcID !== undefined)
             document.getElementById(dynamicColorsTag.dcID)?.remove();
+        return true;
     }
+    return false;
 }

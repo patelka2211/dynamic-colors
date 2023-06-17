@@ -1,4 +1,5 @@
 import materialDynamicColors from "./helper/mdc";
+import { hex2rgb } from "./hex2rgb";
 import { LightOrDark, theme2x } from "./OSTheme";
 
 /**
@@ -20,9 +21,12 @@ export function getThemeCSSFromColor(
         css = "*{";
 
     for (const colorName in themeObj)
-        if (Object.prototype.hasOwnProperty.call(themeObj, colorName))
+        if (Object.prototype.hasOwnProperty.call(themeObj, colorName)) {
             css += `--${id}-${colorName}:${themeObj[colorName]};`;
-
+            let rgb = hex2rgb(themeObj[colorName]);
+            if (rgb !== undefined)
+                css += `--${id}-${colorName}-rgb:${rgb.r},${rgb.g},${rgb.b};`;
+        }
     css += "}";
 
     return { css, theme2x };

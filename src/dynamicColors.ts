@@ -1,6 +1,15 @@
 import { getThemeCSSFromColor } from "./getColor";
-import { addInstance, removeInstance } from "./instances";
+import { addInstance, instances, removeInstance } from "./instances";
 import { validateHEXColor } from "./validateHEX";
+
+/**
+ * Returns formatted `tag id` from `Dynamic Colors Tag name`.
+ * @param name Name of the tag.
+ * @returns {string} `Dynamic Colors Tag` id.
+ */
+function dcTagIDFormat(name: string): string {
+    return `${name}-dc`;
+}
 
 /**
  * Represents a dynamic colors tag.
@@ -15,7 +24,7 @@ export class DynamicColorsTag {
      * @param {string} HEXColor The HEX color value.
      */
     constructor(name: string, HEXColor: string) {
-        let id = `${name}-dc`;
+        let id = dcTagIDFormat(name);
 
         if (document.getElementById(id) === null) {
             this.styleTag.setAttribute("id", id);
@@ -23,7 +32,7 @@ export class DynamicColorsTag {
             this.id = id;
         } else
             throw Error(
-                `This document already has style tag with id "${id}". Can't create new style tag with same id.`
+                `Unable to create another 'DynamicColorsTag' instance with the name '${name}'. To modify the color of the tag with the name '${name}', please use the 'setColor' method on the existing instance.`
             );
 
         this.setColor(HEXColor);
@@ -80,20 +89,34 @@ export class DynamicColorsTag {
  * @param {string} HEXColor The HEX color value.
  * @returns {DynamicColorsTag} The newly created instance of DynamicColorsTag.
  */
-export function DynamicColors(name: string, HEXColor: string) {
+export function DynamicColors(
+    name: string,
+    HEXColor: string
+): DynamicColorsTag {
     return new DynamicColorsTag(name, HEXColor);
 }
 
 /**
  * Deletes a DynamicColorsTag instance.
- * @param {DynamicColorsTag} dynamicColorsTag The DynamicColorsTag instance to delete.
- * @param {Function} [afterDelete=() => {}] The callback function to execute after deleting the DynamicColorsTag.
+ * @param {DynamicColorsTag | string} dcTagInstanceOrName The DynamicColorsTag instance to delete.
+ * @returns {Promise<boolean>} Returns `true` if the instance is deleted, `false` otherwise.
  */
 export async function deleteDynamicColors(
-    dynamicColorsTag: DynamicColorsTag,
-    afterDelete: Function = () => {}
-) {
-    if (dynamicColorsTag instanceof DynamicColorsTag)
-        removeInstance(dynamicColorsTag);
-    afterDelete();
+    dcTagInstanceOrName: DynamicColorsTag | string
+): Promise<boolean> {
+    if (dcTagInstanceOrName instanceof DynamicColorsTag)
+        return removeInstance(dcTagInstanceOrName);
+    else {
+        let dcID = dcTagIDFormat(dcTagInstanceOrName),
+            dcIDList = instances.map((instance) => {
+                return instance.dcID;
+            });
+
+        if (dcIDList.includes(dcID)) {
+            instances.splice(dcIDList.indexOf(dcID), 1);
+            document.getElementById(dcID)?.remove();
+            return true;
+        }
+        return false;
+    }
 }
