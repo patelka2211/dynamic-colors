@@ -2,14 +2,14 @@
 
 ![](https://lh3.googleusercontent.com/rKjjYo5u2SmXb8kfJvGrN8OAlwbBBZ24hyMWY5PCvt6V4iVhs-R9GvQjpgGm7-P8uAcC3BcmyIBmPgFtASL2nr5HO1H4r0LcL3EOwCyeoVM3X54-aJs=w1400-v0)
 
-**Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_DynamicColors_](#dynamiccolors), [_deleteDynamicColors_](#deletedynamiccolors), [_setAutoTheme_](#setautotheme), [_setDarkTheme_](#setdarktheme), [_setLightTheme_](#setlighttheme), [_themeCycle_](#themecycle).
+**Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle).
 
 ## Installation
 
 [![npm (scoped)](https://img.shields.io/npm/v/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.0.1)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.0.2)
 [![npm](https://img.shields.io/npm/dy/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.1/)
+[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.2/)
 
 To install Dynamic Colors using npm, run the following command:
 
@@ -17,35 +17,35 @@ To install Dynamic Colors using npm, run the following command:
 npm i dynamic-colors
 ```
 
-Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.1/DynamicColors.js) in your website using a `<script>` tag:
+Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.2/DynamicColors.js) in your website using a `<script>` tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.1/DynamicColors.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.2/DynamicColors.js"></script>
 ```
 
 ## Available APIs
 
-### DynamicColors()
+### create()
 
-The [DynamicColors()](#dynamiccolors) function creates a new instance of the [DynamicColorTag class](#dynamiccolorstag-class), which is used to manage color themes.
-
-|      | Available as        |
-| :--- | :------------------ |
-| ESM  | DynamicColors()     |
-| IIFE | DynamicColors.new() |
-
-### deleteDynamicColors()
-
-The [deleteDynamicColors()](#deletedynamiccolors) function is used to unsubscribe an instance of the [DynamicColorTag class](#dynamiccolorstag-class) from all available DynamicColors instances. By calling this function with the desired instance as an argument, you can effectively remove the instance's association with the color themes managed by Dynamic Colors.
+The [create()](#create) function creates a new instance of the [DynamicColors class](#dynamiccolors-class), which is used to manage color themes.
 
 |         | Available as           |
 | :------ | :--------------------- |
-| in ESM  | deleteDynamicColors()  |
-| in IIFE | DynamicColors.delete() |
+| in ESM  | create()               |
+| in IIFE | DynamicColors.create() |
+
+### remove()
+
+The [remove()](#remove) function is used to unsubscribe an instance of the [DynamicColors class](#dynamiccolors-class) from all available DynamicColors instances. By calling this function with the desired instance as an argument, you can effectively remove the instance's association with the color themes managed by Dynamic Colors.
+
+|         | Available as           |
+| :------ | :--------------------- |
+| in ESM  | remove()               |
+| in IIFE | DynamicColors.remove() |
 
 ### setAutoTheme()
 
-The [setAutoTheme()](#setautotheme) function subscribes all instances of the [DynamicColorTag class](#dynamiccolorstag-class) to automatically change the theme based on the user's operating system theme.
+The [setAutoTheme()](#setautotheme) function subscribes all instances of the [DynamicColors class](#dynamiccolors-class) to automatically change the theme based on the user's operating system theme.
 
 |         | Available as                 |
 | :------ | :--------------------------- |
@@ -54,7 +54,7 @@ The [setAutoTheme()](#setautotheme) function subscribes all instances of the [Dy
 
 ### setDarkTheme()
 
-The [setDarkTheme()](#setdarktheme) function changes all instances of the [DynamicColorTag class](#dynamiccolorstag-class) to a dark theme.
+The [setDarkTheme()](#setdarktheme) function changes all instances of the [DynamicColors class](#dynamiccolors-class) to a dark theme.
 
 |         | Available as                 |
 | :------ | :--------------------------- |
@@ -63,7 +63,7 @@ The [setDarkTheme()](#setdarktheme) function changes all instances of the [Dynam
 
 ### setLightTheme()
 
-The [setLightTheme()](#setlighttheme) function changes all instances of the [DynamicColorTag class](#dynamiccolorstag-class) to a light theme.
+The [setLightTheme()](#setlighttheme) function changes all instances of the [DynamicColors class](#dynamiccolors-class) to a light theme.
 
 |         | Available as                  |
 | :------ | :---------------------------- |
@@ -85,14 +85,11 @@ The [themeCycle()](#themecycle) function cycles through different themes based o
 
 ## Internally used functionalities
 
-### DynamicColorsTag class
+### DynamicColors class
 
-<!-- -   Dynamic Color Tag is JavaScript class that manages color theme generated by itself.
--   It can be created using the [_DynamicColors_ function](#dynamiccolors-function) and can only be deleted by [deleteDynamicColors()](#deletedynamiccolors). -->
+The [DynamicColors class](#dynamiccolors-class) is used internally by Dynamic Colors to manage the color themes it generates. It has the following characteristics:
 
-The [DynamicColorTag class](#dynamiccolorstag-class) is used internally by Dynamic Colors to manage the color themes it generates. It has the following characteristics:
-
-The [DynamicColorTag class](#dynamiccolorstag-class) is created using the [DynamicColors()](#dynamiccolors) function and can only be deleted using the [deleteDynamicColors()](#deletedynamiccolors) function.
+The [DynamicColors class](#dynamiccolors-class) is created using the [create()](#create) function and can only be removed using the [remove()](#remove) function.
 
 ### Material Dynamic Colors
 

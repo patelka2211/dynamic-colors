@@ -1,7 +1,7 @@
-export { DynamicColors, deleteDynamicColors } from "./dynamicColors";
 export {
     setAutoTheme,
     setDarkTheme,
     setLightTheme,
     themeCycle,
 } from "./OSTheme";
+export { create, remove } from "./dynamicColors";

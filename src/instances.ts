@@ -1,31 +1,51 @@
-import { DynamicColorsTag } from "./dynamicColors";
+import { DynamicColors } from "./dynamicColors";
+import { isLocked } from "./lockMechanism";
 
 /**
- * An array containing instances of DynamicColorsTag.
- * @type {DynamicColorsTag[]}
+ * An array containing instances of DynamicColors.
+ * @type {DynamicColors[]}
  */
-export let instances: DynamicColorsTag[] = [];
+export let instances: DynamicColors[] = [];
 
 /**
- * Adds a DynamicColorsTag instance to the instances array.
- * @param {DynamicColorsTag} dynamicColorsTag The DynamicColorsTag instance to add.
+ * Adds a DynamicColors instance to the instances array.
+ * @param {DynamicColors} dynamicColors The DynamicColors instance to add.
  */
-export function addInstance(dynamicColorsTag: DynamicColorsTag) {
-    instances.push(dynamicColorsTag);
+export function addInstance(dynamicColors: DynamicColors) {
+    instances.push(dynamicColors);
 }
 
 /**
- * Removes a DynamicColorsTag instance from the instances array and removes its associated HTML element.
- * @param {DynamicColorsTag} dynamicColorsTag The DynamicColorsTag instance to remove.
- * @returns {boolean} Returns `true` if the instance is removed, `false` otherwise.
+ * Removes a DynamicColors instance from the instances array and removes its associated HTML element.
+ * @param {DynamicColors} dynamicColors The DynamicColors instance to remove.
+ * @returns {boolean} `true` if the instance is removed, `false` otherwise.
  */
-export function removeInstance(dynamicColorsTag: DynamicColorsTag): boolean {
-    if (instances.includes(dynamicColorsTag)) {
-        instances.splice(instances.indexOf(dynamicColorsTag), 1);
+export function removeInstance(dynamicColors: DynamicColors): boolean {
+    if (dynamicColors.dcID !== undefined && isLocked(dynamicColors.dcID)) {
+        console.warn(
+            `DynamicColors instance with name '${dynamicColors.dcID.replace(
+                "-dc",
+                ""
+            )}' is restricted to be removed.`
+        );
+        return false;
+    }
 
-        if (dynamicColorsTag.dcID !== undefined)
-            document.getElementById(dynamicColorsTag.dcID)?.remove();
+    if (instances.includes(dynamicColors)) {
+        instances.splice(instances.indexOf(dynamicColors), 1);
+
+        if (dynamicColors.dcID !== undefined)
+            document.getElementById(dynamicColors.dcID)?.remove();
         return true;
     }
     return false;
+}
+
+/**
+ * @returns {(string | undefined)[]} Array id of DynamicColors instances.
+ */
+export function dcIDList(): (string | undefined)[] {
+    return instances.map((instance) => {
+        return instance.dcID;
+    });
 }

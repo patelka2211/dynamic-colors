@@ -1,11 +1,11 @@
 import { getThemeCSSFromColor } from "./getColor";
-import { addInstance, instances, removeInstance } from "./instances";
+import { addInstance, dcIDList, instances, removeInstance } from "./instances";
+import { addLock, isLocked, removeLock } from "./lockMechanism";
 import { validateHEXColor } from "./validateHEX";
 
 /**
- * Returns formatted `tag id` from `Dynamic Colors Tag name`.
  * @param name Name of the tag.
- * @returns {string} `Dynamic Colors Tag` id.
+ * @returns {string} Formatted `tag id` from `Dynamic Colors Tag name`.
  */
 function dcTagIDFormat(name: string): string {
     return `${name}-dc`;
@@ -14,12 +14,12 @@ function dcTagIDFormat(name: string): string {
 /**
  * Represents a dynamic colors tag.
  */
-export class DynamicColorsTag {
+export class DynamicColors {
     private id: string | undefined = undefined;
     private styleTag = document.createElement("style");
 
     /**
-     * Creates an instance of DynamicColorsTag.
+     * Creates an instance of DynamicColors.
      * @param {string} name The name of the dynamic colors tag.
      * @param {string} HEXColor The HEX color value.
      */
@@ -32,7 +32,7 @@ export class DynamicColorsTag {
             this.id = id;
         } else
             throw Error(
-                `Unable to create another 'DynamicColorsTag' instance with the name '${name}'. To modify the color of the tag with the name '${name}', please use the 'setColor' method on the existing instance.`
+                `Unable to create another 'DynamicColors' instance with the name '${name}'. To modify the color of the tag with the name '${name}', please use the 'setColor()' method on the existing instance.`
             );
 
         this.setColor(HEXColor);
@@ -74,6 +74,26 @@ export class DynamicColorsTag {
     }
 
     /**
+     * After this method call, it will not be possible to remove or delete this particular instance of DynamicColors.
+     *
+     * - Call `allowRemove()` to re-enable removal of this instance.
+     */
+    public restrictRemove() {
+        if (this.id !== undefined) addLock(this.id);
+    }
+
+    /**
+     * After this method call, it will be possible to remove or delete this particular instance of DynamicColors.
+     *
+     * - Call `restrictRemove()` to enable removal of this instance again
+     *
+     * **NOTE** - DynamicColors instance are `always removable by default`.
+     */
+    public allowRemove() {
+        if (this.id !== undefined) removeLock(this.id);
+    }
+
+    /**
      * Clears the dynamic colors tag.
      */
     public clear() {
@@ -84,36 +104,39 @@ export class DynamicColorsTag {
 }
 
 /**
- * Creates a new instance of DynamicColorsTag.
+ * Creates a new instance of DynamicColors.
  * @param {string} name The name of the dynamic colors tag.
  * @param {string} HEXColor The HEX color value.
- * @returns {DynamicColorsTag} The newly created instance of DynamicColorsTag.
+ * @returns {DynamicColors} The newly created instance of DynamicColors.
  */
-export function DynamicColors(
-    name: string,
-    HEXColor: string
-): DynamicColorsTag {
-    return new DynamicColorsTag(name, HEXColor);
+export function create(name: string, HEXColor: string): DynamicColors {
+    return new DynamicColors(name, HEXColor);
 }
 
 /**
- * Deletes a DynamicColorsTag instance.
- * @param {DynamicColorsTag | string} dcTagInstanceOrName The DynamicColorsTag instance to delete.
- * @returns {Promise<boolean>} Returns `true` if the instance is deleted, `false` otherwise.
+ * Removes a DynamicColors instance.
+ * @param {DynamicColors | string} dcTagInstanceOrName The DynamicColors `instance` or `name` to remove.
+ * @returns {Promise<boolean>} `true` if the instance is removed, `false` otherwise.
  */
-export async function deleteDynamicColors(
-    dcTagInstanceOrName: DynamicColorsTag | string
+export async function remove(
+    dcTagInstanceOrName: DynamicColors | string
 ): Promise<boolean> {
-    if (dcTagInstanceOrName instanceof DynamicColorsTag)
+    if (dcTagInstanceOrName instanceof DynamicColors)
         return removeInstance(dcTagInstanceOrName);
     else {
-        let dcID = dcTagIDFormat(dcTagInstanceOrName),
-            dcIDList = instances.map((instance) => {
-                return instance.dcID;
-            });
+        let dcID = dcTagIDFormat(dcTagInstanceOrName);
 
-        if (dcIDList.includes(dcID)) {
-            instances.splice(dcIDList.indexOf(dcID), 1);
+        if (isLocked(dcID)) {
+            console.warn(
+                `DynamicColors instance with name '${dcTagInstanceOrName}' is restricted to be removed.`
+            );
+            return false;
+        }
+
+        let idList = dcIDList();
+
+        if (idList.includes(dcID)) {
+            instances.splice(idList.indexOf(dcID), 1);
             document.getElementById(dcID)?.remove();
             return true;
         }

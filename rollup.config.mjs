@@ -16,24 +16,14 @@ const currentDate = new Date(),
  */`;
 
 export default [
-    {
-        input: "./lib/index.iife.js",
-        output: {
-            file: "./DynamicColors.js",
-            format: "iife",
-            name: "DynamicColors",
-            banner: banner,
-        },
-    },
-    {
+    process.env.type === "esm" && {
         input: "./lib/index.js",
         output: {
             file: "index.js",
             format: "es",
-            banner: `${banner}'use strict';`,
         },
     },
-    {
+    process.env.type === "esm" && {
         input: "./src/index.ts",
         output: {
             file: "index.d.ts",
@@ -41,4 +31,13 @@ export default [
         },
         plugins: [dts()],
     },
-];
+    process.env.type === "iife" && {
+        input: "./index.js",
+        output: {
+            file: "./DynamicColors.js",
+            format: "iife",
+            name: "DynamicColors",
+            banner: banner,
+        },
+    },
+].filter(Boolean);

@@ -1,12 +1,12 @@
 {
   "name": "dynamic-colors",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dynamic Colors is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes.",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "tsc -p ./tsconfig.json && rollup -c && terser ./index.js -c -m -o ./index.js && terser ./DynamicColors.js -c -m -o ./DynamicColors.js && rm -rf ./lib/",
+    "build": "tsc -p ./tsconfig.json && rollup -c --environment type:esm && rollup -c --environment type:iife && terser ./index.js -c -m -o ./index.js && terser ./DynamicColors.js -c -m -o ./DynamicColors.js && rm -rf ./lib/",
     "test-build": "npm run build && tsc ./test/index.ts -t es6 && rollup ./test/index.js -o ./test/out.js"
   },
   "files": [

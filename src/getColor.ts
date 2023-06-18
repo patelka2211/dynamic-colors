@@ -4,7 +4,7 @@ import { LightOrDark, theme2x } from "./OSTheme";
 
 /**
  * Retrieves the theme CSS string for a given color.
- * @param {string} id The ID associated with the DynamicColorsTag.
+ * @param {string} id The ID associated with the DynamicColors.
  * @param {string} color The color value.
  * @returns {Object} An object containing the CSS string and theme value.
  */
