@@ -21,15 +21,8 @@ export function addInstance(dynamicColors: DynamicColors) {
  * @returns {boolean} `true` if the instance is removed, `false` otherwise.
  */
 export function removeInstance(dynamicColors: DynamicColors): boolean {
-    if (dynamicColors.dcID !== undefined && isLocked(dynamicColors.dcID)) {
-        console.warn(
-            `DynamicColors instance with name '${dynamicColors.dcID.replace(
-                "-dc",
-                ""
-            )}' is restricted to be removed.`
-        );
+    if (dynamicColors.dcID !== undefined && isLocked(dynamicColors.dcID))
         return false;
-    }
 
     if (instances.includes(dynamicColors)) {
         instances.splice(instances.indexOf(dynamicColors), 1);

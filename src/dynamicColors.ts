@@ -126,12 +126,7 @@ export async function remove(
     else {
         let dcID = dcTagIDFormat(dcTagInstanceOrName);
 
-        if (isLocked(dcID)) {
-            console.warn(
-                `DynamicColors instance with name '${dcTagInstanceOrName}' is restricted to be removed.`
-            );
-            return false;
-        }
+        if (isLocked(dcID)) return false;
 
         let idList = dcIDList();
 

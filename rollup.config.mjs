@@ -16,14 +16,15 @@ const currentDate = new Date(),
  */`;
 
 export default [
-    process.env.type === "esm" && {
+    process.env.format === "esm" && {
         input: "./lib/index.js",
         output: {
             file: "index.js",
             format: "es",
+            banner: `${banner}'use strict';`,
         },
     },
-    process.env.type === "esm" && {
+    process.env.format === "esm" && {
         input: "./src/index.ts",
         output: {
             file: "index.d.ts",
@@ -31,12 +32,11 @@ export default [
         },
         plugins: [dts()],
     },
-    process.env.type === "iife" && {
-        input: "./index.js",
+    process.env.format === "iife" && {
+        input: "./build.iife.js",
         output: {
             file: "./DynamicColors.js",
             format: "iife",
-            name: "DynamicColors",
             banner: banner,
         },
     },

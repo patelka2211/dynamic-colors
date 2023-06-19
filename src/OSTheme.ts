@@ -43,7 +43,7 @@ function changeThemeInDOM(theme: LightOrDark): void {
  * @param {MediaQueryListEvent} event - The event object for the media query list change.
  * @returns {void}
  */
-function OSThemeChangesListenerCallback(event: MediaQueryListEvent) {
+function OSThemeChangesListenerCallback(event: MediaQueryListEvent): void {
     changeThemeInDOM(event.matches ? "dark" : "light");
 }
 
@@ -121,5 +121,14 @@ export function themeCycle(): Theme {
     return theme3x;
 }
 
+function runAfterLoad() {
+    setAutoTheme();
+
+    setTimeout(() => {
+        console.log("runAfterLoad removed");
+        window.removeEventListener("load", runAfterLoad);
+    }, 1000);
+}
+
 // Event listener function to set the theme to auto on page load.
-window.addEventListener("load", setAutoTheme);
+window.addEventListener("load", runAfterLoad);

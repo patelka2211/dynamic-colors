@@ -23,5 +23,13 @@ export function removeLock(DynamicColorsID: string) {
  * @returns {boolean} `true` if instance is locked, `false` otherwise.
  */
 export function isLocked(DynamicColorsID: string): boolean {
-    return lockList.includes(DynamicColorsID);
+    let lock = lockList.includes(DynamicColorsID);
+    if (lock)
+        console.warn(
+            `Warning: The 'DynamicColors instance' named '${DynamicColorsID.replace(
+                "-dc",
+                ""
+            )}' is protected and cannot be removed.`
+        );
+    return lock;
 }

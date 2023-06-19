@@ -1,13 +1,18 @@
 {
   "name": "dynamic-colors",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Dynamic Colors is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes.",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "tsc -p ./tsconfig.json && rollup -c --environment type:esm && rollup -c --environment type:iife && terser ./index.js -c -m -o ./index.js && terser ./DynamicColors.js -c -m -o ./DynamicColors.js && rm -rf ./lib/",
-    "test-build": "npm run build && tsc ./test/index.ts -t es6 && rollup ./test/index.js -o ./test/out.js"
+    "tsc-build": "tsc -p ./tsconfig.json",
+    "rollup-esm": "rollup -c --environment format:esm",
+    "rollup-iife": "rollup -c --environment format:iife",
+    "terser-esm": "terser ./index.js -c -m -o ./index.js",
+    "terser-iife": "terser ./DynamicColors.js -c -m -o ./DynamicColors.js",
+    "build": "npm run tsc-build && npm run rollup-esm && npm run rollup-iife && npm run terser-esm && npm run terser-iife && rm -rf ./lib/",
+    "test-build": "npm run tsc-build && npm run rollup-esm && tsc ./test/index.ts -t es6 && rollup ./test/index.js -o ./test/out.js && rm -rf ./lib/"
   },
   "files": [
     "index.js",
@@ -19,17 +24,20 @@
   },
   "keywords": [
     "Dynamic Colors",
+    "Dynamic Colors from KPVERSE",
     "DynamicColors.js",
-    "Material Theme Builder",
+    "KPVERSE",
     "Dynamic Colors by KP",
     "Developed by KP",
+    "Kartavya Patel",
+    "patelka2211",
+    "Material Theme Builder",
     "front-end",
     "Dynamic content",
     "color theme generation",
     "Front-end development",
     "UI development",
-    "Open source",
-    "patelka2211"
+    "Open source"
   ],
   "author": "Kartavya Patel <patelka2211@gmail.com>",
   "license": "MIT",
