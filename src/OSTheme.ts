@@ -123,9 +123,7 @@ export function themeCycle(): Theme {
 
 function runAfterLoad() {
     setAutoTheme();
-
     setTimeout(() => {
-        console.log("runAfterLoad removed");
         window.removeEventListener("load", runAfterLoad);
     }, 1000);
 }

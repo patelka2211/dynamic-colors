@@ -1,15 +1,15 @@
-# Dynamic Colors
+[![](https://repository-images.githubusercontent.com/653971957/a63f11cb-aa1e-41f2-8418-e4e7580f3c31)](https://npmjs.com/package/dynamic-colors "Dynamic Colors from KPVERSE")
 
-![](https://lh3.googleusercontent.com/rKjjYo5u2SmXb8kfJvGrN8OAlwbBBZ24hyMWY5PCvt6V4iVhs-R9GvQjpgGm7-P8uAcC3BcmyIBmPgFtASL2nr5HO1H4r0LcL3EOwCyeoVM3X54-aJs=w1400-v0)
+# Dynamic Colors
 
 **Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle).
 
 ## Installation
 
 [![npm (scoped)](https://img.shields.io/npm/v/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.0.3)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.0.4)
 [![npm](https://img.shields.io/npm/dy/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.3/)
+[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/)
 
 To install Dynamic Colors using npm, run the following command:
 
@@ -17,10 +17,10 @@ To install Dynamic Colors using npm, run the following command:
 npm i dynamic-colors
 ```
 
-Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.3/DynamicColors.js) in your website using a `<script>` tag:
+Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/DynamicColors.js) in your website using a `<script>` tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.3/DynamicColors.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/DynamicColors.js"></script>
 ```
 
 ## Available APIs

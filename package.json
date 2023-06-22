@@ -1,6 +1,6 @@
 {
   "name": "dynamic-colors",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Dynamic Colors is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes.",
   "main": "index.js",
   "module": "index.js",
