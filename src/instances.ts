@@ -18,7 +18,7 @@ export function addInstance(dynamicColors: DynamicColors) {
 /**
  * Removes a DynamicColors instance from the instances array and removes its associated HTML element.
  * @param {DynamicColors} dynamicColors The DynamicColors instance to remove.
- * @returns {boolean} `true` if the instance is removed, `false` otherwise.
+ * @returns {boolean} `true` if the instance is removed, otherwise `false`.
  */
 export function removeInstance(dynamicColors: DynamicColors): boolean {
     if (dynamicColors.dcID !== undefined && isLocked(dynamicColors.dcID))

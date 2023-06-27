@@ -2,14 +2,14 @@
 
 # Dynamic Colors
 
-**Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle).
+**Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle), [_isInstance()_](#isinstance).
 
 ## Installation
 
 [![npm (scoped)](https://img.shields.io/npm/v/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.0.4)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.1.0)
 [![npm](https://img.shields.io/npm/dy/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/)
+[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/)
 
 To install Dynamic Colors using npm, run the following command:
 
@@ -17,10 +17,10 @@ To install Dynamic Colors using npm, run the following command:
 npm i dynamic-colors
 ```
 
-Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/DynamicColors.js) in your website using a `<script>` tag:
+Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/DynamicColors.js) in your website using a `<script>` tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.0.4/DynamicColors.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/DynamicColors.js"></script>
 ```
 
 ## Available APIs
@@ -82,6 +82,10 @@ The [themeCycle()](#themecycle) function cycles through different themes based o
 -   If the current theme is `Auto`, the next theme will be `Light`.
 -   If the current theme is `Light`, the next theme will be `Dark`.
 -   If the current theme is `Dark`, the next theme will be `Auto`.
+
+### isInstance()
+
+Determines whether the given object is an instance of [`DynamicColors`](#dynamiccolors-class). Returns `true` if the object is an instance of [`DynamicColors`](#dynamiccolors-class), otherwise `false`.
 
 ## Internally used functionalities
 

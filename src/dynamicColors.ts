@@ -30,13 +30,12 @@ export class DynamicColors {
             this.styleTag.setAttribute("id", id);
             document.head.appendChild(this.styleTag);
             this.id = id;
+            this.setColor(HEXColor);
+            addInstance(this);
         } else
             throw Error(
-                `Unable to create another 'DynamicColors' instance with the name '${name}'. To modify the color of the tag with the name '${name}', please use the 'setColor()' method on the existing instance.`
+                `Unable to create another 'DynamicColors' instance with the name '${name}'.\n\nTo modify the color of the tag with the name '${name}', please use the 'setColor' method on the existing instance.`
             );
-
-        this.setColor(HEXColor);
-        addInstance(this);
     }
 
     /**
@@ -47,14 +46,15 @@ export class DynamicColors {
     public setColor(HEXColor: string) {
         let color = validateHEXColor(HEXColor);
 
-        if (!(typeof color === "boolean" && !color) && this.id !== undefined) {
-            this.styleTag.setAttribute("dc-color", color);
+        if (color === false)
+            throw Error(`"${HEXColor}" is not valid HEX color.`);
 
-            const { css, theme2x } = getThemeCSSFromColor(this.id, color);
+        if (this.id === undefined) return;
 
-            this.styleTag.innerHTML = css;
-            this.styleTag.setAttribute("dc-theme", theme2x);
-        } else throw Error(`"${HEXColor}" is not valid HEX color.`);
+        const { css, theme2x } = getThemeCSSFromColor(this.id, color);
+        this.styleTag.innerHTML = css;
+        this.styleTag.setAttribute("dc-color", color);
+        this.styleTag.setAttribute("dc-theme", theme2x);
     }
 
     /**
@@ -116,7 +116,7 @@ export function create(name: string, HEXColor: string): DynamicColors {
 /**
  * Removes a DynamicColors instance.
  * @param {DynamicColors | string} dcTagInstanceOrName The DynamicColors `instance` or `name` to remove.
- * @returns {Promise<boolean>} `true` if the instance is removed, `false` otherwise.
+ * @returns {Promise<boolean>} `true` if the instance is removed, otherwise `false`.
  */
 export async function remove(
     dcTagInstanceOrName: DynamicColors | string
@@ -137,4 +137,14 @@ export async function remove(
         }
         return false;
     }
+}
+
+/**
+ * Determines whether the given object is an instance of `DynamicColors`.
+ *
+ * @param {unknown} object The object to check.
+ * @returns {boolean} Returns `true` if the object is an instance of `DynamicColors`, otherwise `false`.
+ */
+export function isInstance(object: unknown): boolean {
+    return object instanceof DynamicColors;
 }

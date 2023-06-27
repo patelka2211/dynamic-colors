@@ -4,4 +4,4 @@ export {
     setLightTheme,
     themeCycle,
 } from "./OSTheme";
-export { create, remove } from "./dynamicColors";
+export { create, isInstance, remove } from "./dynamicColors";

@@ -20,7 +20,7 @@ export function removeLock(DynamicColorsID: string) {
 /**
  * Check if DynamicColors instance is locked or not.
  * @param DynamicColorsID
- * @returns {boolean} `true` if instance is locked, `false` otherwise.
+ * @returns {boolean} `true` if instance is locked, otherwise `false`.
  */
 export function isLocked(DynamicColorsID: string): boolean {
     let lock = lockList.includes(DynamicColorsID);
