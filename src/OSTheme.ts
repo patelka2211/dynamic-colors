@@ -50,14 +50,14 @@ function OSThemeChangesListenerCallback(event: MediaQueryListEvent): void {
 /**
  * Media query list for monitoring color scheme changes.
  */
-let colorSchemeMediaQuery: MediaQueryList | null;
+let colorSchemeMediaQuery: MediaQueryList | null = null;
 
 /**
  * Common function for setting theme (light or dark).
  * @param {LightOrDark} theme The theme to set (light or dark).
  * @returns {void}
  */
-function commonForSetTheme(theme: LightOrDark): void {
+function commonForLightAndDarkTheme(theme: LightOrDark): void {
     theme3x = theme;
 
     changeThemeInDOM(theme);
@@ -73,41 +73,43 @@ function commonForSetTheme(theme: LightOrDark): void {
 
 /**
  * Sets the theme to light.
- * @returns {void}
+ * @returns {'light'} Returns "light"
  */
-export function setLightTheme(): void {
-    if (theme3x === "light") return;
-    commonForSetTheme("light");
+export function setLightTheme(): "light" {
+    if (theme3x !== "light") commonForLightAndDarkTheme("light");
+    return "light";
 }
 
 /**
  * Sets the theme to dark.
- * @returns {void}
+ * @returns {'dark'} Returns "dark"
  */
-export function setDarkTheme(): void {
-    if (theme3x === "dark") return;
-    commonForSetTheme("dark");
+export function setDarkTheme(): "dark" {
+    if (theme3x !== "dark") commonForLightAndDarkTheme("dark");
+    return "dark";
 }
 
 /**
- * Sets the theme to auto, which adjusts based on the OS theme.
- * @returns {void}
+ * Sets the automatic theme based on the user's system preference.
+ * @returns {LightOrDark} The current theme ("light", "dark").
  */
-export function setAutoTheme(): void {
-    if (theme3x === "auto" || window.matchMedia === undefined) return;
-
+export function setAutoTheme(): LightOrDark {
+    if (window.matchMedia === undefined) return setLightTheme();
+    if (theme3x === "auto" && colorSchemeMediaQuery !== null)
+        return colorSchemeMediaQuery.matches ? "dark" : "light";
     theme3x = "auto";
-
     colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    let theme: LightOrDark = colorSchemeMediaQuery.matches ? "dark" : "light";
 
     // Check initial color scheme
-    changeThemeInDOM(colorSchemeMediaQuery.matches ? "dark" : "light");
+    changeThemeInDOM(theme);
 
     // Watch for changes in color scheme
     colorSchemeMediaQuery.addEventListener(
         "change",
         OSThemeChangesListenerCallback
     );
+    return theme;
 }
 
 /**
@@ -121,12 +123,5 @@ export function themeCycle(): Theme {
     return theme3x;
 }
 
-function runAfterLoad() {
-    setAutoTheme();
-    setTimeout(() => {
-        window.removeEventListener("load", runAfterLoad);
-    }, 1000);
-}
-
-// Event listener function to set the theme to auto on page load.
-window.addEventListener("load", runAfterLoad);
+// Set auto theme as default.
+setAutoTheme();

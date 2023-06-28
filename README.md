@@ -7,9 +7,9 @@
 ## Installation
 
 [![npm (scoped)](https://img.shields.io/npm/v/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.1.0)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/min/dynamic-colors)](https://bundlephobia.com/package/dynamic-colors@1.1.1)
 [![npm](https://img.shields.io/npm/dy/dynamic-colors)](https://www.npmjs.com/package/dynamic-colors)
-[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/)
+[![jsDelivr hits (npm scoped)](https://img.shields.io/jsdelivr/gh/hy/patelka2211/dynamic-colors)](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.1/)
 
 To install Dynamic Colors using npm, run the following command:
 
@@ -17,10 +17,10 @@ To install Dynamic Colors using npm, run the following command:
 npm i dynamic-colors
 ```
 
-Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/DynamicColors.js) in your website using a `<script>` tag:
+Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.1/DynamicColors.js) in your website using a `<script>` tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.0/DynamicColors.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/patelka2211/dynamic-colors@1.1.1/DynamicColors.js"></script>
 ```
 
 ## Available APIs
