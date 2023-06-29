@@ -1,3 +1,4 @@
+import { theme2x } from "./OSTheme";
 import { getThemeCSSFromColor } from "./getColor";
 import { addInstance, dcIDList, instances, removeInstance } from "./instances";
 import { addLock, isLocked, removeLock } from "./lockMechanism";
@@ -51,8 +52,7 @@ export class DynamicColors {
 
         if (this.id === undefined) return;
 
-        const { css, theme2x } = getThemeCSSFromColor(this.id, color);
-        this.styleTag.innerHTML = css;
+        this.styleTag.innerHTML = getThemeCSSFromColor(this.id, color);
         this.styleTag.setAttribute("dc-color", color);
         this.styleTag.setAttribute("dc-theme", theme2x);
     }

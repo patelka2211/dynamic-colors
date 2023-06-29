@@ -1,21 +1,15 @@
-import materialDynamicColors from "./helper/mdc";
+import { fromHEX } from "./helper/mdc";
 import { hex2rgb } from "./hex2rgb";
-import { LightOrDark, theme2x } from "./OSTheme";
+import { theme2x } from "./OSTheme";
 
 /**
  * Retrieves the theme CSS string for a given color.
  * @param {string} id The ID associated with the DynamicColors.
  * @param {string} color The color value.
- * @returns {Object} An object containing the CSS string and theme value.
+ * @returns {string} CSS string.
  */
-export function getThemeCSSFromColor(
-    id: string,
-    color: string
-): {
-    css: string;
-    theme2x: LightOrDark;
-} {
-    let themeObj = materialDynamicColors(color)[theme2x] as {
+export function getThemeCSSFromColor(id: string, color: string): string {
+    let themeObj = fromHEX(color)[theme2x] as {
             [_: string]: string;
         },
         css = "*{";
@@ -28,6 +22,5 @@ export function getThemeCSSFromColor(
                 css += `--${id}-${colorName}-rgb:${rgb.r},${rgb.g},${rgb.b};`;
         }
     css += "}";
-
-    return { css, theme2x };
+    return css;
 }
