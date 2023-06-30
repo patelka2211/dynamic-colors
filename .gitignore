@@ -10,10 +10,15 @@ node_modules
 .vscode
 
 # Distribution files
-index.js
+/index.js
 index.d.ts
 
 # Build
 build.main.sh
 build.test.sh
 build.iife.js
+
+# website stuff
+website-stuff/config.build.sh
+website-stuff/config.terser.sh
+website-stuff/rollup.config.mjs

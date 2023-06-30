@@ -2,7 +2,7 @@
 
 # Dynamic Colors
 
-**Dynamic Colors** is a JavaScript library that can dynamically generate color theme from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color themes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle), [_isInstance()_](#isinstance).
+**Dynamic Colors** is a JavaScript library that can dynamically generate color palette from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color palettes such as [_create()_](#create), [_remove()_](#remove), [_setAutoTheme()_](#setautotheme), [_setDarkTheme()_](#setdarktheme), [_setLightTheme()_](#setlighttheme), [_themeCycle()_](#themecycle), [_isInstance()_](#isinstance).
 
 ## Installation
 
@@ -27,7 +27,7 @@ Alternatively, you can include [Dynnamic Colors's IIFE file](https://cdn.jsdeliv
 
 ### create()
 
-The [create()](#create) function creates a new instance of the [DynamicColors class](#dynamiccolors-class), which is used to manage color themes.
+The [create()](#create) function creates a new instance of the [DynamicColors class](#dynamiccolors-class), which is used to manage color palettes.
 
 |         | Available as           |
 | :------ | :--------------------- |
@@ -36,7 +36,7 @@ The [create()](#create) function creates a new instance of the [DynamicColors cl
 
 ### remove()
 
-The [remove()](#remove) function is used to unsubscribe an instance of the [DynamicColors class](#dynamiccolors-class) from all available DynamicColors instances. By calling this function with the desired instance as an argument, you can effectively remove the instance's association with the color themes managed by Dynamic Colors.
+The [remove()](#remove) function is used to unsubscribe an instance of the [DynamicColors class](#dynamiccolors-class) from all available DynamicColors instances. By calling this function with the desired instance as an argument, you can effectively remove the instance's association with the color palettes managed by Dynamic Colors.
 
 |         | Available as           |
 | :------ | :--------------------- |
@@ -91,13 +91,13 @@ Determines whether the given object is an instance of [`DynamicColors`](#dynamic
 
 ### DynamicColors class
 
-The [DynamicColors class](#dynamiccolors-class) is used internally by Dynamic Colors to manage the color themes it generates. It has the following characteristics:
+The [DynamicColors class](#dynamiccolors-class) is used internally by Dynamic Colors to manage the color palettes it generates. It has the following characteristics:
 
 The [DynamicColors class](#dynamiccolors-class) is created using the [create()](#create) function and can only be removed using the [remove()](#remove) function.
 
 ### Material Dynamic Colors
 
-Dynamic Colors leverages the power of [Material Dynamic Colors](https://github.com/leonardorafael/material-dynamic-colors) internally to generate color themes. It builds upon the functionality provided by [Material Dynamic Colors](https://github.com/leonardorafael/material-dynamic-colors) and offers additional features. With Dynamic Colors, you can go beyond the basic color generation and enjoy advanced functionalities tailored to your specific needs, enabling you to create dynamic visual experiences for your web applications.
+Dynamic Colors leverages the power of [Material Dynamic Colors](https://github.com/leonardorafael/material-dynamic-colors) internally to generate color palettes. It builds upon the functionality provided by [Material Dynamic Colors](https://github.com/leonardorafael/material-dynamic-colors) and offers additional features. With Dynamic Colors, you can go beyond the basic color generation and enjoy advanced functionalities tailored to your specific needs, enabling you to create dynamic visual experiences for your web applications.
 
 ## License
 
