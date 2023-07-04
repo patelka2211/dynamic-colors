@@ -1,7 +1,9 @@
-export {
-    setAutoTheme,
-    setDarkTheme,
-    setLightTheme,
-    themeCycle,
-} from "./OSTheme";
-export { create, isInstance, remove } from "./dynamicColors";
+export { setAutoTheme } from "./OSTheme/setAutoTheme";
+export { setDarkTheme } from "./OSTheme/setDarkTheme";
+export { setLightTheme } from "./OSTheme/setLightTheme";
+export { themeCycle } from "./OSTheme/themeCycle";
+export { create } from "./dynamicColors/create";
+export { remove } from "./dynamicColors/remove";
+export { DynamicColorsType } from "./dynamicColors/types";
+export { getInstanceByName } from "./instances/getInstanceByName";
+export { isInstance } from "./instances/isInstance";

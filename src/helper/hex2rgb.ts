@@ -12,9 +12,10 @@ export function hex2rgb(hex: string) {
             .map((char) => char + char)
             .join("");
 
-    let colorList: number[] = ["r", "g", "b"].map((value, index) =>
-        parseInt(hex.slice(index * 2, index * 2 + 2), 16)
-    );
+    let colorList: number[] = ["r", "g", "b"].map(function () {
+        let _2xindex = arguments[1] * 2;
+        return parseInt(hex.slice(_2xindex, _2xindex + 2), 16);
+    });
 
     // Return the RGB values as an object
     return { r: colorList[0], g: colorList[1], b: colorList[2] };

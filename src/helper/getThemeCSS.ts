@@ -1,6 +1,6 @@
-import { fromHEX } from "./helper/mdc";
+import { theme2x } from "../OSTheme/index";
 import { hex2rgb } from "./hex2rgb";
-import { theme2x } from "./OSTheme";
+import { fromHEX } from "./mdc";
 
 /**
  * Retrieves the theme CSS string for a given color.
@@ -8,7 +8,7 @@ import { theme2x } from "./OSTheme";
  * @param {string} color The color value.
  * @returns {string} CSS string.
  */
-export function getThemeCSSFromColor(id: string, color: string): string {
+export function getThemeCSS(id: string, color: string): string {
     let themeObj = fromHEX(color)[theme2x] as {
             [_: string]: string;
         },

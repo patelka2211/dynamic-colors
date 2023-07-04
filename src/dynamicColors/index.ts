@@ -1,16 +1,10 @@
-import { theme2x } from "./OSTheme";
-import { getThemeCSSFromColor } from "./getColor";
-import { addInstance, dcIDList, instances, removeInstance } from "./instances";
-import { addLock, isLocked, removeLock } from "./lockMechanism";
-import { validateHEXColor } from "./validateHEX";
-
-/**
- * @param name Name of the tag.
- * @returns {string} Formatted `tag id` from `Dynamic Colors Tag name`.
- */
-function dcTagIDFormat(name: string): string {
-    return `${name}-dc`;
-}
+import { theme2x } from "../OSTheme/index";
+import { getThemeCSS } from "../helper/getThemeCSS";
+import { addInstance } from "../instances/addInstance";
+import { validateHEX } from "../helper/validateHEX";
+import { addLock } from "../lockMechanism/addLock";
+import { removeLock } from "../lockMechanism/removeLock";
+import { nameToId } from "../helper/nameToId";
 
 /**
  * Represents a dynamic colors tag.
@@ -25,7 +19,7 @@ export class DynamicColors {
      * @param {string} HEXColor The HEX color value.
      */
     constructor(name: string, HEXColor: string) {
-        let id = dcTagIDFormat(name);
+        let id = nameToId(name);
 
         if (document.getElementById(id) === null) {
             this.styleTag.setAttribute("id", id);
@@ -45,14 +39,14 @@ export class DynamicColors {
      * @throws {Error} If the provided HEXColor is not valid.
      */
     public setColor(HEXColor: string) {
-        let color = validateHEXColor(HEXColor);
+        let color = validateHEX(HEXColor);
 
         if (color === false)
             throw Error(`"${HEXColor}" is not valid HEX color.`);
 
         if (this.id === undefined) return;
 
-        this.styleTag.innerHTML = getThemeCSSFromColor(this.id, color);
+        this.styleTag.innerHTML = getThemeCSS(this.id, color);
         this.styleTag.setAttribute("dc-color", color);
         this.styleTag.setAttribute("dc-theme", theme2x);
     }
@@ -101,50 +95,4 @@ export class DynamicColors {
         this.styleTag.removeAttribute("dc-color");
         this.styleTag.removeAttribute("dc-theme");
     }
-}
-
-/**
- * Creates a new instance of DynamicColors.
- * @param {string} name The name of the dynamic colors tag.
- * @param {string} HEXColor The HEX color value.
- * @returns {DynamicColors} The newly created instance of DynamicColors.
- */
-export function create(name: string, HEXColor: string): DynamicColors {
-    return new DynamicColors(name, HEXColor);
-}
-
-/**
- * Removes a DynamicColors instance.
- * @param {DynamicColors | string} dcTagInstanceOrName The DynamicColors `instance` or `name` to remove.
- * @returns {Promise<boolean>} `true` if the instance is removed, otherwise `false`.
- */
-export async function remove(
-    dcTagInstanceOrName: DynamicColors | string
-): Promise<boolean> {
-    if (dcTagInstanceOrName instanceof DynamicColors)
-        return removeInstance(dcTagInstanceOrName);
-    else {
-        let dcID = dcTagIDFormat(dcTagInstanceOrName);
-
-        if (isLocked(dcID)) return false;
-
-        let idList = dcIDList();
-
-        if (idList.includes(dcID)) {
-            instances.splice(idList.indexOf(dcID), 1);
-            document.getElementById(dcID)?.remove();
-            return true;
-        }
-        return false;
-    }
-}
-
-/**
- * Determines whether the given object is an instance of `DynamicColors`.
- *
- * @param {unknown} object The object to check.
- * @returns {boolean} Returns `true` if the object is an instance of `DynamicColors`, otherwise `false`.
- */
-export function isInstance(object: unknown): boolean {
-    return object instanceof DynamicColors;
 }

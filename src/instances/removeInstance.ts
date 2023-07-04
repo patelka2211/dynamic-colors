@@ -1,19 +1,6 @@
-import { DynamicColors } from "./dynamicColors";
-import { isLocked } from "./lockMechanism";
-
-/**
- * An array containing instances of DynamicColors.
- * @type {DynamicColors[]}
- */
-export let instances: DynamicColors[] = [];
-
-/**
- * Adds a DynamicColors instance to the instances array.
- * @param {DynamicColors} dynamicColors The DynamicColors instance to add.
- */
-export function addInstance(dynamicColors: DynamicColors) {
-    instances.push(dynamicColors);
-}
+import { DynamicColors } from "../dynamicColors/index";
+import { isLocked } from "../lockMechanism/isLocked";
+import { instances } from "./index";
 
 /**
  * Removes a DynamicColors instance from the instances array and removes its associated HTML element.
@@ -32,13 +19,4 @@ export function removeInstance(dynamicColors: DynamicColors): boolean {
         return true;
     }
     return false;
-}
-
-/**
- * @returns {(string | undefined)[]} Array id of DynamicColors instances.
- */
-export function dcIDList(): (string | undefined)[] {
-    return instances.map((instance) => {
-        return instance.dcID;
-    });
 }
