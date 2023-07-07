@@ -2,7 +2,7 @@ import { nameToId } from "../helper/nameToId";
 import { dcIDList } from "../instances/dcIDList";
 import { instances } from "../instances/index";
 import { removeInstance } from "../instances/removeInstance";
-import { isLocked } from "../lockMechanism/isLocked";
+import { isLocked } from "../locking-mechanism/isLocked";
 import { DynamicColors } from "./index";
 
 /**

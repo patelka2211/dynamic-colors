@@ -1,9 +1,9 @@
-import { theme2x } from "../OSTheme/index";
+import { osTheme } from "../theme/index";
 import { getThemeCSS } from "../helper/getThemeCSS";
 import { addInstance } from "../instances/addInstance";
 import { validateHEX } from "../helper/validateHEX";
-import { addLock } from "../lockMechanism/addLock";
-import { removeLock } from "../lockMechanism/removeLock";
+import { addLock } from "../locking-mechanism/addLock";
+import { removeLock } from "../locking-mechanism/removeLock";
 import { nameToId } from "../helper/nameToId";
 
 /**
@@ -48,7 +48,7 @@ export class DynamicColors {
 
         this.styleTag.innerHTML = getThemeCSS(this.id, color);
         this.styleTag.setAttribute("dc-color", color);
-        this.styleTag.setAttribute("dc-theme", theme2x);
+        this.styleTag.setAttribute("dc-theme", osTheme);
     }
 
     /**

@@ -3,17 +3,17 @@ import { changeThemeInDOM } from "./changeThemeInDOM";
 import {
     colorSchemeMediaQuery,
     setColorSchemeMediaQuery,
-    setTheme3x,
+    setUITheme,
 } from "./index";
-import { LightOrDark } from "./types";
+import { OSTheme } from "./types";
 
 /**
  * Common function for setting theme (light or dark).
- * @param {LightOrDark} theme The theme to set (light or dark).
+ * @param {OSTheme} theme The theme to set (light or dark).
  * @returns {void}
  */
-export function commonForLightAndDark(theme: LightOrDark): void {
-    setTheme3x(theme);
+export function commonForLightAndDark(theme: OSTheme): void {
+    setUITheme(theme);
 
     changeThemeInDOM(theme);
 

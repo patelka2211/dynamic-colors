@@ -1,5 +1,5 @@
 import { DynamicColors } from "../dynamicColors/index";
-import { isLocked } from "../lockMechanism/isLocked";
+import { isLocked } from "../locking-mechanism/isLocked";
 import { instances } from "./index";
 
 /**

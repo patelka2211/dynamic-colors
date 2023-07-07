@@ -1,4 +1,4 @@
-import { theme2x } from "../OSTheme/index";
+import { osTheme } from "../theme/index";
 import { hex2rgb } from "./hex2rgb";
 import { fromHEX } from "./mdc";
 
@@ -9,7 +9,7 @@ import { fromHEX } from "./mdc";
  * @returns {string} CSS string.
  */
 export function getThemeCSS(id: string, color: string): string {
-    let themeObj = fromHEX(color)[theme2x] as {
+    let themeObj = fromHEX(color)[osTheme] as {
             [_: string]: string;
         },
         css = "*{";

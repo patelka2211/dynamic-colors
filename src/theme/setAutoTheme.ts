@@ -3,26 +3,26 @@ import { changeThemeInDOM } from "./changeThemeInDOM";
 import {
     colorSchemeMediaQuery,
     setColorSchemeMediaQuery,
-    setTheme3x,
-    theme3x,
+    setUITheme,
+    uiTheme,
 } from "./index";
 import { setLightTheme } from "./setLightTheme";
-import { LightOrDark } from "./types";
+import { OSTheme } from "./types";
 
 /**
  * Sets the automatic theme based on the user's system preference.
- * @returns {LightOrDark} The current theme ("light", "dark").
+ * @returns {OSTheme} The current theme ("light", "dark").
  */
-export function setAutoTheme(): LightOrDark {
+export function setAutoTheme(): OSTheme {
     if (window.matchMedia === undefined) return setLightTheme();
-    if (theme3x === "auto")
+    if (uiTheme === "auto")
         return colorSchemeMediaQuery?.matches ? "dark" : "light";
 
-    setTheme3x("auto");
+    setUITheme("auto");
 
     setColorSchemeMediaQuery(window.matchMedia("(prefers-color-scheme: dark)"));
 
-    let theme: LightOrDark = colorSchemeMediaQuery?.matches ? "dark" : "light";
+    let theme: OSTheme = colorSchemeMediaQuery?.matches ? "dark" : "light";
 
     // Check initial color scheme
     changeThemeInDOM(theme);

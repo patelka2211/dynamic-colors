@@ -1,9 +1,9 @@
 /**
  * Represents a light or dark theme.
  */
-export type LightOrDark = "dark" | "light";
+export type OSTheme = "dark" | "light";
 
 /**
  * Represents a theme option, including "auto" and a light or dark theme.
  */
-export type Theme = "auto" | LightOrDark;
+export type UITheme = "auto" | OSTheme;

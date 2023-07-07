@@ -1,9 +1,12 @@
-export { setAutoTheme } from "./OSTheme/setAutoTheme";
-export { setDarkTheme } from "./OSTheme/setDarkTheme";
-export { setLightTheme } from "./OSTheme/setLightTheme";
-export { themeCycle } from "./OSTheme/themeCycle";
 export { create } from "./dynamicColors/create";
 export { remove } from "./dynamicColors/remove";
 export { DynamicColorsType } from "./dynamicColors/types";
 export { getInstanceByName } from "./instances/getInstanceByName";
 export { isInstance } from "./instances/isInstance";
+export { getCurrentOSTheme } from "./theme/getCurrentOSTheme";
+export { getCurrentUITheme } from "./theme/getCurrentUITheme";
+export { setAutoTheme } from "./theme/setAutoTheme";
+export { setDarkTheme } from "./theme/setDarkTheme";
+export { setLightTheme } from "./theme/setLightTheme";
+export { themeCycle } from "./theme/themeCycle";
+export { OSTheme, UITheme } from "./theme/types";
