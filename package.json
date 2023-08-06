@@ -1,6 +1,6 @@
 {
   "name": "dynamic-colors",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Dynamic Colors is a JavaScript library that can dynamically generate color palettes from a single HEX color and it provides a range of useful APIs for creating, managing, and manipulating color palettes.",
   "main": "index.js",
   "module": "index.js",
@@ -11,6 +11,7 @@
     "rollup-iife": "rollup -c --environment format:iife",
     "terser-esm": "terser ./index.js -c -m --toplevel -o ./index.js",
     "terser-iife": "terser ./DynamicColors.js -c -m -o ./DynamicColors.js",
+    "prerelease-build": "npm run tsc-build && npm run rollup-esm && npm run rollup-iife && rm -rf ./lib/",
     "build": "npm run tsc-build && npm run rollup-esm && npm run rollup-iife && npm run terser-esm && npm run terser-iife && rm -rf ./lib/",
     "test-build": "npm run tsc-build && npm run rollup-esm && tsc ./test/index.ts -t es6 && rollup ./test/index.js -o ./test/out.js && rm -rf ./lib/"
   },
@@ -44,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/patelka2211/dynamic-colors/issues"
   },
-  "homepage": "https://github.com/patelka2211/dynamic-colors#readme",
+  "homepage": "https://kpverse.in/dynamic-colors/",
   "devDependencies": {
     "rollup": "^3.25.1",
     "rollup-plugin-dts": "^5.3.0",

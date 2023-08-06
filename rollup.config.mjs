@@ -6,6 +6,8 @@ const currentDate = new Date(),
     banner = `/**
  * **Dynamic Colors** from KPVERSE
  *
+ * v1.1.5
+ *
  * Updated on ${formattedDate}.
  *
  * Copyright © 2023-present, Kartavya Patel. All rights reserved.

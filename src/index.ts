@@ -3,6 +3,7 @@ export { remove } from "./dynamicColors/remove";
 export { DynamicColorsType } from "./dynamicColors/types";
 export { getInstanceByName } from "./instances/getInstanceByName";
 export { isInstance } from "./instances/isInstance";
+export { VERSION } from "./metadata";
 export { getCurrentOSTheme } from "./theme/getCurrentOSTheme";
 export { getCurrentUITheme } from "./theme/getCurrentUITheme";
 export { setAutoTheme } from "./theme/setAutoTheme";

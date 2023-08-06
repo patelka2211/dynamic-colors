@@ -41,8 +41,10 @@ export class DynamicColors {
     public setColor(HEXColor: string) {
         let color = validateHEX(HEXColor);
 
-        if (color === false)
-            throw Error(`"${HEXColor}" is not valid HEX color.`);
+        if (!color)
+            throw Error(
+                `"${HEXColor}" is not valid HEX color. Only 7 length HEX color is accepted. For example: "#2596D1" or "#ffffff".`
+            );
 
         if (this.id === undefined) return;
 
