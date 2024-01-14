@@ -4,7 +4,7 @@ const currentDate = new Date(),
     options = { year: "numeric", month: "long", day: "numeric" },
     formattedDate = currentDate.toLocaleDateString("en-US", options),
     banner = `/**
- * **Dynamic Colors** from KPVERSE
+ * Dynamic Colors from KPVERSE
  *
  * v1.1.5
  *
